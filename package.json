@@ -21,6 +21,7 @@
     "@vercel/kv": "^1.0.0",
     "@vercel/postgres": "^0.5.1",
     "ai": "^2.2.22",
+    "audit": "^0.0.6",
     "clsx": "^2.0.0",
     "date-fns": "^2.30.0",
     "focus-trap-react": "^10.2.3",
@@ -56,6 +57,7 @@
     "autoprefixer": "^10.4.16",
     "eslint": "8.53.0",
     "eslint-config-next": "^14.0.2",
+    "node-fetch": "^3.3.2",
     "postcss": "^8.4.31",
     "prettier": "^3.1.0",
     "prettier-plugin-tailwindcss": "^0.5.7",
@@ -63,5 +65,12 @@
     "tailwindcss": "^3.3.5",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.2.2"
+  },
+  "pnpm": {
+    "overrides": {
+      "undici@<5.26.2": ">=5.26.2",
+      "postcss@<8.4.31": ">=8.4.31",
+      "zod@<=3.22.2": ">=3.22.3"
+    }
   }
 }
