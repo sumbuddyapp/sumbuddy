@@ -20,7 +20,7 @@ import {
   useSelectedLayoutSegments,
 } from "next/navigation";
 import { ReactNode, useEffect, useMemo, useState } from "react";
-import { getCompanyFromCampaignId } from "@/lib/actions";
+import { getCompanyFromCampaignId, getCompanyFromPostId } from "@/lib/actions";
 import Image from "next/image";
 import { FileCode, Github } from "lucide-react";
 
@@ -69,8 +69,13 @@ export default function Nav({ children }: { children: ReactNode }) {
   const [companyId, setCompanyId] = useState<string | null>();
 
   useEffect(() => {
-    if (segments[0] === "post" && id) {
+    if (segments[0] === "campaign" && id) {
       getCompanyFromCampaignId(id).then((id) => {
+        setCompanyId(id);
+      });
+    }
+    else if (segments[0] === "post" && id) {
+      getCompanyFromPostId(id).then((id) => {
         setCompanyId(id);
       });
     }

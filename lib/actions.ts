@@ -246,6 +246,17 @@ export const getCompanyFromBuddyListId = async (buddyListId: string) => {
   });
   return campaign?.companyId;
 };
+export const getCompanyFromPostId = async (postId: string) => {
+  const post = await prisma.post.findUnique({
+    where: {
+      id: postId,
+    },
+    select: {
+      companyId: true,
+    },
+  });
+  return post?.companyId;
+};
 
 export const createCampaign = withCompanyAuth(async (formData: FormData, company: Company) => {
   const session = await getSession();
