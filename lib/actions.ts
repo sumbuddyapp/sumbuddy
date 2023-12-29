@@ -266,6 +266,8 @@ export const createCampaign = withCompanyAuth(async (formData: FormData, company
   //   };
   // }
   const name = formData.get('name') as string;
+  const schedulable: boolean = formData.get('schedulable') === 'true';
+  const schedule = formData.get('schedule') as string;
   const link1 = formData.get('link1') as string;
   const link2 = formData.get('link2') as string;
   const link3 = formData.get('link3') as string;
@@ -278,10 +280,12 @@ export const createCampaign = withCompanyAuth(async (formData: FormData, company
   const response = await prisma.campaign.create({
     data: {
       companyId: company.id,
-      name,
-      campaignLinks,
-      startDate,
+      name: name,
+      campaignLinks: campaignLinks,
+      startDate: startDate,
       bonusAmount: Number(bonusAmount),
+      schedulable: schedulable,
+      schedule: schedule
     },
   });
   await revalidateTag(

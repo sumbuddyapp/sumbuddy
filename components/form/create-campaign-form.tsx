@@ -85,6 +85,20 @@ export default function CreateCampaignForm() {
                         className="w-full rounded-md border border-stone-200 bg-stone-50 px-4 py-2 text-sm text-stone-600 placeholder:text-stone-400 focus:border-black focus:outline-none focus:ring-black dark:border-stone-600 dark:bg-black dark:text-white dark:placeholder-stone-700 dark:focus:ring-white"
                     />
                 </div>
+<div className="flex items-center space-x-4">
+  <input
+    id="schedulable"
+    name="schedulable"
+    type="checkbox"
+    className="h-5 w-2 rounded-md border border-stone-200 bg-stone-50 px-4 py-2 text-stone-600 placeholder:text-stone-400 focus:border-black focus:outline-none focus:ring-black dark:border-stone-600 dark:bg-black dark:text-white dark:placeholder-stone-700 dark:focus:ring-white shadow border"
+  />
+  <label
+    htmlFor="schedulable"
+    className="text-sm font-medium text-stone-500 dark:text-stone-400"
+  >
+    Schedulable
+  </label>
+</div>
                 <label
                     htmlFor="startDate"
                     className="text-sm font-medium text-stone-500 dark:text-stone-400"
