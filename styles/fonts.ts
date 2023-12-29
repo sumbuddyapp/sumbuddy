@@ -1,5 +1,6 @@
 import localFont from "next/font/local";
-import { Inter, Lora, Work_Sans } from "next/font/google";
+import { Ubuntu, Inter, Lora, Work_Sans } from "next/font/google";
+
 
 export const inter = Inter({
   variable: "--font-inter",
@@ -30,9 +31,15 @@ export const work = Work_Sans({
   weight: "600",
   display: "swap",
 });
-
+export const ubuntu = Ubuntu({
+  variable: "--font-ubuntu",
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  display: "swap",
+});
 export const fontMapper = {
   "font-cal": calTitle.variable,
   "font-lora": lora.variable,
   "font-work": work.variable,
+  "font-multistep": ubuntu.variable,
 } as Record<string, string>;

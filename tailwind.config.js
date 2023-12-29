@@ -109,6 +109,7 @@ module.exports = {
       },
       fontFamily: {
         default: ["var(--font-inter)", ...fontFamily.sans],
+        mutlistep: ["var(--font-ubuntu)", ...fontFamily.sans],
         cal: ["var(--font-cal)", ...fontFamily.sans],
         title: ["var(--font-title)", ...fontFamily.sans],
         mono: ["Consolas", ...fontFamily.mono],

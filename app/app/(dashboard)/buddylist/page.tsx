@@ -5,7 +5,7 @@ import EditBuddyListForm from "@/components/form/edit-buddy-list-form";
 
 export default async function BuddyListPage({ params }: { params: { id: string } }) {
   const session = await getSession();
-  if (!session) {
+  if (!session?.user) {
     redirect("/login");
   }
   console.log(params);

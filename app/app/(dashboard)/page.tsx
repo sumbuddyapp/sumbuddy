@@ -5,8 +5,16 @@ import Posts from "@/components/posts";
 import Link from "next/link";
 import PlaceholderCard from "@/components/placeholder-card";
 import OverviewCompaniesCta from "@/components/overview-companies-cta";
-export default function Overview() {
-  return (
+import {getSession} from "@/lib/auth";
+import {redirect} from "next/navigation";
+export default async function Overview() {
+    const session = await getSession();
+    console.log(session || "no session - user");
+    if (!session?.user) {
+        redirect("/login");
+    }
+
+    return (
     <div className="flex max-w-screen-xl flex-col space-y-12 p-8">
       {/*<div className="flex flex-col space-y-6">*/}
       {/*  <h1 className="font-cal text-3xl font-bold dark:text-white">*/}

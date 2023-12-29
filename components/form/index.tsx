@@ -82,6 +82,7 @@ export default function Form({
               <option value="font-cal">Cal Sans</option>
               <option value="font-lora">Lora</option>
               <option value="font-work">Work Sans</option>
+              <option value="font-multistep">Multi</option>
             </select>
           </div>
         ) : inputAttrs.name === "subdomain" ? (

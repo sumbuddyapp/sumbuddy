@@ -3,9 +3,15 @@ import Companies from "@/components/companies";
 import PlaceholderCard from "@/components/placeholder-card";
 import CreateCompanyButton from "@/components/create-company-button";
 import CreateCompanyModal from "@/components/modal/create-company";
+import {getSession} from "@/lib/auth";
+import {redirect} from "next/navigation";
 
-export default function AllCompanies({ params }: { params: { id: string } }) {
-  return (
+export default async function AllCompanies({ params }: { params: { id: string } }) {
+    const session = await getSession();
+    if (!session?.user) {
+        redirect("/login");
+    }
+    return (
     <div className="flex max-w-screen-xl flex-col space-y-12 p-8">
       <div className="flex flex-col space-y-6">
         <div className="flex items-center justify-between">

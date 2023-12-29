@@ -6,6 +6,7 @@ import LogoutButton from "./logout-button";
 
 export default async function Profile() {
   const session = await getSession();
+  console.log(session || "no session - user");
   if (!session?.user) {
     redirect("/login");
   }
