@@ -1,6 +1,6 @@
 import { getSession } from "@/lib/auth";
 import prisma from "@/lib/prisma";
-import CreateCompanyButton from "./create-company-button";
+import CreateCompanyButton from "./modal/buttons/create-company";
 import CreateCompanyModal from "./modal/create-company";
 import Link from "next/link";
 

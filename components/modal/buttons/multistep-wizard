@@ -3,7 +3,7 @@
 import { useModal } from "@/components/modal/provider";
 import { ReactNode } from "react";
 
-export default function CreateCampaignModalButton({
+export default function MultistepWizardButton({
   children,
 }: {
   children: ReactNode;

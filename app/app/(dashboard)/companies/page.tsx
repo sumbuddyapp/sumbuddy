@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import Companies from "@/components/companies";
 import PlaceholderCard from "@/components/placeholder-card";
-import CreateCompanyButton from "@/components/create-company-button";
+import CreateCompanyButton from "@/components/modal/buttons/create-company";
 import CreateCompanyModal from "@/components/modal/create-company";
 import {getSession} from "@/lib/auth";
 import {redirect} from "next/navigation";
