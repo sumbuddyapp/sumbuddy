@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Components
-import Provider from '@/components/modal/campaign-wizard/context/provider';
+import Provider from '@/components/modal/campaign-wizard/context/multi-step-form-provider';
 import Sidebar from '@/components/modal/campaign-wizard/context/sidebar';
 // Styles
 import '@/styles/globals.css';

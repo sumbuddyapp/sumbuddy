@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm, FormProvider } from 'react-hook-form';
 import {CampaignFormValues} from "@/types/campaign-form-values";
 
-export default function Provider({ children }: FormProviderProps) {
+export default function MultiStepFormProvider({ children }: FormProviderProps) {
     const route = useRouter();
 
     const methods = useForm<CampaignFormValues>({
