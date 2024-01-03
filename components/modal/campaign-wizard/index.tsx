@@ -3,13 +3,13 @@ import clsx from 'clsx';
 import { toast } from "sonner";
 // Styles
 import '@/styles/globals.css';
-import CampaignFormProvider from './campaign-form-provider';
 import useCampaignContext from "@/lib/hooks/use-campaign-context";
 import Sidebar from './sidebar';
 import { useState } from "react";
 import { useRouter } from 'next/router';
 import Details from "./details/page";
 import Summary from "./summary/page";
+import CampaignWizardProvider from "./provider";
 
 export const metadata = {
     title: 'Multi-step Campaign Creation Form | SumBuddy',
@@ -43,7 +43,7 @@ export default function CampaignWizard({children,}: {
             <main className="font-normal relative w-full max-w-lg lg:max-w-[940px]">
                 <div className="lg:bg-white w-full flex flex-col lg:flex-row px-4 lg:p-4 rounded-2xl lg:shadow-lg">
                     <Sidebar/>
-                    <CampaignFormProvider>{children}</CampaignFormProvider>
+                    <CampaignWizardProvider>{children}</CampaignWizardProvider>
                 </div>
                 <footer className={clsx(
                     'absolute -bottom-16 lg:-bottom-12',

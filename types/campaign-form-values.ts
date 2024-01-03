@@ -12,5 +12,5 @@ export interface CampaignFormValues {
     active: boolean,
     companyId: string,
     buddyListId: string,
-    current_segment: string,
+    currentSegment: string,
 }

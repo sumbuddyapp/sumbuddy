@@ -3,7 +3,7 @@ import prisma from "@/lib/prisma";
 import { notFound, redirect } from "next/navigation";
 import Campaigns from "@/components/campaigns";
 import Link from 'next/link';
-import CampaignWizardModal from "@/components/modal/campaign-wizard";
+import CampaignWizard from "@/components/modal/campaign-wizard";
 import CampaignWizardButton from "@/components/modal/buttons/campaign-wizard-button";
 export default async function CompanyCampaigns({ params }: { params: { id: string } }) {
   const session = await getSession();
@@ -41,7 +41,7 @@ export default async function CompanyCampaigns({ params }: { params: { id: strin
           </a>
         </div>
             <CampaignWizardButton>
-              <CampaignWizardModal />
+              <CampaignWizard/>
             </CampaignWizardButton>
       </div>
       <Campaigns companyId={decodeURIComponent(params.id)} />
