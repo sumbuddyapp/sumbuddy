@@ -1,7 +1,6 @@
 "use client";
 // Styles
-import '@/stylesheets/globals.css';
-import '@/stylesheets/fonts.css';
+import '@/styles/globals.css';
 
 import clsx from "clsx";
 import CampaignFormWrapper from "@/components/campaign-wizard/wrapper";
