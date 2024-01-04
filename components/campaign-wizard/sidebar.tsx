@@ -8,7 +8,7 @@ import Step from './step';
 import bgSidebarDesktop from '@/images/bg-sidebar-desktop.svg';
 import bgSidebarMobile from '@/images/bg-sidebar-mobile.svg';
 
-export default function Sidebar() {
+export default function CampaignWizardSidebar() {
     const segment = useSelectedLayoutSegment() as
         | 'details'
         | 'buddylist'

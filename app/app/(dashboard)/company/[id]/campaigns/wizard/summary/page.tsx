@@ -3,10 +3,10 @@
 import clsx from 'clsx';
 import {useRouter} from 'next/navigation';
 import useCampaignContext from "@/lib/hooks/use-campaign-context";
-import CampaignFormWrapper from "@/components/modal/campaign-wizard/campaign-form-wrapper";
-import CampaignFormActions from "@/components/modal/campaign-wizard/campaign-form-actions";
+import CampaignFormWrapper from "@/components/campaign-wizard/campaign-form-wrapper";
+import CampaignFormActions from "@/components/campaign-wizard/campaign-form-actions";
 
-export default function DetailsPage() {
+export default function SummaryPage() {
     const router = useRouter();
     const {register, trigger,
            formState} = useCampaignContext();

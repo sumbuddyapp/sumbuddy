@@ -3,8 +3,8 @@ import prisma from "@/lib/prisma";
 import { notFound, redirect } from "next/navigation";
 import Campaigns from "@/components/campaigns";
 import Link from 'next/link';
-import CampaignWizard from "@/components/modal/campaign-wizard";
-import CampaignWizardButton from "@/components/modal/buttons/campaign-wizard-button";
+import CampaignWizard from "../../../../../components/campaign-wizard";
+import CampaignWizardButton from "@/components/campaign-wizard/campaign-wizard-button";
 export default async function CompanyCampaigns({ params }: { params: { id: string } }) {
   const session = await getSession();
   if (!session?.user) {
@@ -40,9 +40,6 @@ export default async function CompanyCampaigns({ params }: { params: { id: strin
             {url} ↗
           </a>
         </div>
-            <CampaignWizardButton>
-              <CampaignWizard/>
-            </CampaignWizardButton>
       </div>
       <Campaigns companyId={decodeURIComponent(params.id)} />
     </>
