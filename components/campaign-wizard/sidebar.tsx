@@ -3,7 +3,7 @@
 import { useSelectedLayoutSegment } from 'next/navigation';
 // Components
 import Image from 'next/image';
-import Step from './step';
+import CampaignWizardStep from './step';
 // Images
 import bgSidebarDesktop from '@/images/bg-sidebar-desktop.svg';
 import bgSidebarMobile from '@/images/bg-sidebar-mobile.svg';
@@ -49,7 +49,7 @@ export default function CampaignWizardSidebar() {
     ];
 
     const Steps = steps.map((step) => (
-        <Step key={step.number} step={step} segment={segment} />
+        <CampaignWizardStep key={step.number} step={step} segment={segment} />
     ));
 
     return (

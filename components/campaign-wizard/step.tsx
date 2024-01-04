@@ -4,21 +4,9 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-export default function Step({ step, segment }: StepProps) {
-    // const router = useRouter();
-
-    // const { formState } = useCampaignContext();
-    // const { isValid } = formState;
-
-    // const validateStep = async (href: string) => {
-    //   if (isValid) {
-    //     router.push(href);
-    //   }
-    // };
-
+export default function CampaignWizardStep({ step, segment }: StepProps) {
     return (
         <Link href={`/${step.segment}`}>
-            {/* <button type="button" onClick={() => validateStep(`/${step}`)}> */}
             <div className="flex items-center gap-4">
                 <button
                     className={clsx(

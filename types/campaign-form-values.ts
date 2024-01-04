@@ -1,16 +1,18 @@
 export interface CampaignFormValues {
     name: string;
-    schedulable: boolean;
+    // schedulable: boolean;
+    // bonusAmount: number;
 
-    startDate: Date;
+    fileName: string;
+
     campaignLinks: {
         link_one: string;
         link_two: string;
         link_three: string;
     };
-    bonusAmount: number;
-    active: boolean,
-    companyId: string,
-    buddyListId: string,
-    currentSegment: string,
+
+    // startDate: Date;
+    schedule: string;
+    // active: boolean;
+    // companyId: string;
 }

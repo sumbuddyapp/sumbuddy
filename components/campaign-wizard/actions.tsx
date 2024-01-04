@@ -1,8 +1,8 @@
 import { useRouter, useSelectedLayoutSegment } from "next/navigation";
 import useCampaignContext from "@/lib/hooks/use-campaign-context";
-import Step from "@/components/campaign-wizard/step";
+import CampaignWizardStep from "@/components/campaign-wizard/step";
 
-export default function CampaignFormActions() {
+export default function CampaignWizardActions() {
     const router = useRouter();
     const { trigger, formState } = useCampaignContext();
     const { isValid } = formState;

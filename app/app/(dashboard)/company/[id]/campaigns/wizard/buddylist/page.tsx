@@ -12,11 +12,11 @@ export default function DetailsPage() {
             <label className="flex flex-col">
                 <div className="flex justify-between">
           <span className="capitalize text-xs text-marine-blue lg:text-sm font-medium tracking-wide">
-            name
+            fileName
           </span>
-                    {errors.name && (
+                    {errors.fileName && (
                         <span className="text-xs lg:text-sm font-medium lg:font-bold tracking-wide text-strawberry-red">
-              {errors.name.message}
+              {errors.fileName.message}
             </span>
                     )}
                 </div>
@@ -24,22 +24,22 @@ export default function DetailsPage() {
                     placeholder="e.g. Floor Staff Roles Q1"
                     className={clsx(
                         "border",
-                        errors.name
+                        errors.fileName
                             ? "border-strawberry-red"
                             : "border-light-gray focus:border-purplish-blue",
                         "py-2 lg:py-3 px-3 lg:px-4 rounded-[4px] lg:rounded-lg mt-1",
                         "text-[15px] lg:text-base text-marine-blue placeholder:text-cool-gray font-medium lg:font-bold",
                         "focus:outline-none",
                     )}
-                    {...register("name", {
+                    {...register("fileName", {
                         required: "This field is required",
                         maxLength: {
                             value: 20,
                             message: "Name must be less than 20 characters",
                         },
                     })}
-                    onBlur={() => trigger("name")}
-                    autoComplete="name"
+                    onBlur={() => trigger("fileName")}
+                    autoComplete="fileName"
                 />
             </label>
             ``

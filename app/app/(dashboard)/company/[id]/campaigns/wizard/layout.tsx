@@ -4,8 +4,8 @@ import '@/stylesheets/globals.css';
 import '@/stylesheets/fonts.css';
 
 import clsx from "clsx";
-import CampaignFormWrapper from "@/components/campaign-wizard/campaign-form-wrapper";
-import CampaignFormActions from "@/components/campaign-wizard/campaign-form-actions";
+import CampaignFormWrapper from "@/components/campaign-wizard/wrapper";
+import CampaignWizardActions from "@/components/campaign-wizard/actions";
 import CampaignWizardSidebar from "@/components/campaign-wizard/sidebar";
 import CampaignWizardProvider from "@/components/campaign-wizard/provider";
 import React from "react";
@@ -26,7 +26,7 @@ export default function WizardLayout({
                     description="Set a name, a bonus amount, and the frequency mode"
                     >
                         {children}{/*add children here*/}
-                    <CampaignFormActions/>
+                    <CampaignWizardActions/>
                     </CampaignFormWrapper>
                 </CampaignWizardProvider>
                   </div>
