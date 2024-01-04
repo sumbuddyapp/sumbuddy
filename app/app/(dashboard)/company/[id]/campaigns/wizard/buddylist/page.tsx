@@ -2,12 +2,19 @@
 
 import clsx from "clsx";
 import useCampaignContext from "@/lib/hooks/use-campaign-context";
+import CampaignWizardActions from "@/components/campaign-wizard/actions";
+import CampaignFormWrapper from "@/components/campaign-wizard/wrapper";
+import React from "react";
 
 export default function DetailsPage() {
     const { register, trigger, formState } = useCampaignContext();
     const { errors } = formState;
 
     return (
+        <CampaignFormWrapper
+            heading="Buddy List"
+            description="Upload a csv file of employee sms capable phone numbers, names and emmployee ids. (or do this later)"
+        >
         <div className="flex flex-col mt-6">
             <label className="flex flex-col">
                 <div className="flex justify-between">
@@ -21,7 +28,6 @@ export default function DetailsPage() {
                     )}
                 </div>
                 <input
-                    placeholder="e.g. Floor Staff Roles Q1"
                     className={clsx(
                         "border",
                         errors.fileName
@@ -35,14 +41,16 @@ export default function DetailsPage() {
                         required: "This field is required",
                         maxLength: {
                             value: 20,
-                            message: "Name must be less than 20 characters",
+                            message: "filname must be short",
                         },
                     })}
                     onBlur={() => trigger("fileName")}
                     autoComplete="fileName"
                 />
             </label>
-            ``
         </div>
-    );
+    <CampaignWizardActions/>
+</CampaignFormWrapper>
+
+);
 }

@@ -10,15 +10,15 @@ export default function CampaignWizardProvider({ children }: FormProviderProps) 
     });
 
     const onSubmit: SubmitHandler<CampaignFormValues> = (data) => {
-        route.push('/thank-you');
+        route.push('./thank-you');
     };
 
     return (
-        <CampaignWizardProvider {...methods}>
+        <FormProvider {...methods}>
             <form onSubmit={methods.handleSubmit(onSubmit)} className="flex w-full">
                 {children}
             </form>
-        </CampaignWizardProvider>
+        </FormProvider>
     );
 }
 

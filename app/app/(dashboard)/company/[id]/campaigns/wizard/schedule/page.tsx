@@ -2,12 +2,19 @@
 
 import clsx from "clsx";
 import useCampaignContext from "@/lib/hooks/use-campaign-context";
+import CampaignFormWrapper from "@/components/campaign-wizard/wrapper";
+import CampaignWizardActions from "@/components/campaign-wizard/actions";
 
 export default function DetailsPage() {
     const { register, trigger, formState } = useCampaignContext();
     const { errors } = formState;
 
     return (
+        <CampaignFormWrapper
+            heading="Campaign Schedule"
+            description="Define the frequency for sending out campaign messages"
+        >
+
         <div className="flex flex-col mt-6">
             <label className="flex flex-col">
                 <div className="flex justify-between">
@@ -42,7 +49,8 @@ export default function DetailsPage() {
                     autoComplete="schedule"
                 />
             </label>
-            ``
         </div>
+            <CampaignWizardActions />
+        </CampaignFormWrapper>
     );
 }

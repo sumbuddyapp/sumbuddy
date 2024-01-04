@@ -2,12 +2,19 @@
 
 import clsx from "clsx";
 import useCampaignContext from "@/lib/hooks/use-campaign-context";
+import CampaignFormWrapper from "@/components/campaign-wizard/wrapper";
+import CampaignWizardActions from "@/components/campaign-wizard/actions";
 
 export default function LinksPage() {
     const { register, trigger, formState } = useCampaignContext();
     const { errors } = formState;
 
     return (
+        <CampaignFormWrapper
+            heading="Referral Links"
+            description="Provide up to 3 Job Listings in the campaign"
+        >
+
         <div className="flex flex-col mt-6">
             <label className="flex flex-col">
                 <div className="flex justify-between">
@@ -114,5 +121,7 @@ export default function LinksPage() {
                 />
             </label>
         </div>
+            <CampaignWizardActions/>
+    </CampaignFormWrapper>
     );
 }

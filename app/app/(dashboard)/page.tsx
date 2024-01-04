@@ -9,7 +9,6 @@ import {getSession} from "@/lib/auth";
 import {redirect} from "next/navigation";
 export default async function Overview() {
     const session = await getSession();
-    console.log(session || "no session - user");
     if (!session?.user) {
         redirect("/login");
     }

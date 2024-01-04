@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 
 export default function CampaignWizardStep({ step, segment }: StepProps) {
     return (
-        <Link href={`/${step.segment}`}>
+        <Link href={`./${step.segment}`}>
             <div className="flex items-center gap-4">
                 <button
                     className={clsx(

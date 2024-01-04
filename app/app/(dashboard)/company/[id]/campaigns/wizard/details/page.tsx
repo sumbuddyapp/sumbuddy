@@ -2,12 +2,19 @@
 
 import clsx from "clsx";
 import useCampaignContext from "@/lib/hooks/use-campaign-context";
+import CampaignWizardActions from "@/components/campaign-wizard/actions";
+import CampaignFormWrapper from "@/components/campaign-wizard/wrapper";
+import React from "react";
 
 export default function DetailsPage() {
     const { register, trigger, formState } = useCampaignContext();
     const { errors } = formState;
 
     return (
+        <CampaignFormWrapper
+            heading="Campaign Details"
+            description="Set a name, a bonus amount, and the frequency mode"
+        >
         <div className="flex flex-col mt-6">
             <label className="flex flex-col">
                 <div className="flex justify-between">
@@ -42,7 +49,8 @@ export default function DetailsPage() {
                     autoComplete="name"
                 />
             </label>
-            ``
         </div>
+            <CampaignWizardActions/>
+        </CampaignFormWrapper>
     );
 }

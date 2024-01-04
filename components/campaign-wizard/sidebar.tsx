@@ -5,8 +5,10 @@ import { useSelectedLayoutSegment } from 'next/navigation';
 import Image from 'next/image';
 import CampaignWizardStep from './step';
 // Images
-import bgSidebarDesktop from '@/images/bg-sidebar-desktop.svg';
-import bgSidebarMobile from '@/images/bg-sidebar-mobile.svg';
+// import bgSidebarDesktop from '@/images/bg-sidebar-desktop.svg';
+import bgSidebarDesktop from '@/images/bg-sidebar-desktop-grayscale.svg';
+// import bgSidebarMobile from '@/images/bg-sidebar-mobile.svg';
+import bgSidebarMobile from '@/images/bg-sidebar-mobile-grayscale.svg';
 
 export default function CampaignWizardSidebar() {
     const segment = useSelectedLayoutSegment() as

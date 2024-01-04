@@ -1,4 +1,4 @@
-import { useRouter, useSelectedLayoutSegment } from "next/navigation";
+import { useRouter, usePathname, useSelectedLayoutSegment, useSelectedLayoutSegments } from "next/navigation";
 import useCampaignContext from "@/lib/hooks/use-campaign-context";
 import CampaignWizardStep from "@/components/campaign-wizard/step";
 
@@ -6,37 +6,45 @@ export default function CampaignWizardActions() {
     const router = useRouter();
     const { trigger, formState } = useCampaignContext();
     const { isValid } = formState;
-    const segment = useSelectedLayoutSegment() as
-        | 'details'
-        | 'buddylist'
-        | 'links'
-        | 'schedule'
-        | 'summary';
 
+
+    const pathname = usePathname();
+    const tailEnd = pathname.split('/').pop();
+    console.log('Tail end of pathname:', tailEnd);
+    const segment = tailEnd
+    console.log('Segment:', segment);
     const validateStep = async () => {
         await trigger();
         if (isValid) {
-            router.push(`/${next()}`);
+            router.push(`./${next()}`);
+        } else {
+            alert('Please fix the errors in the form');
         }
     };
 
     const previous = () => {
         switch (segment) {
+            case 'details': return '';
             case 'buddylist': return 'details';
             case 'links': return 'buddylist';
             case 'schedule': return 'links';
             case 'summary': return 'schedule';
-            default: return '';
+            case 'thank-you': return 'thank-you';
+            default: return 'details';
         }
     };
 
     const next = () => {
+        console.log('Segment:', segment);
+
         switch (segment) {
             case 'details': return 'buddylist';
             case 'buddylist': return 'links';
             case 'links': return 'schedule';
             case 'schedule': return 'summary';
-            default: return '';
+            case 'summary': return 'thank-you';
+            case 'thank-you': return 'thank-you';
+            default: return 'buddylist';
         }
     };
 
@@ -48,7 +56,7 @@ export default function CampaignWizardActions() {
             {segment !== 'details' && (
                 <button
                     type="button"
-                    onClick={() => router.push(`/${previous()}`)}
+                    onClick={() => router.push(`./${previous()}`)}
                     className="bg-marine-blue transition duration-300 hover:opacity-80 text-magnolia mr-4 px-[17px] lg:px-8 py-[10px] lg:py-3 text-sm lg:text-base rounded-[4px] lg:rounded-lg"
                 >
                     Previous Step
@@ -58,7 +66,7 @@ export default function CampaignWizardActions() {
             {segment !== 'summary' && (
                 <button
                     type="button"
-                    onClick={validateStep}
+                    onClick={() => router.push(`./${next()}`)}
                     className="bg-marine-blue transition duration-300 hover:opacity-80 text-magnolia ml-auto px-[17px] lg:px-8 py-[10px] lg:py-3 text-sm lg:text-base rounded-[4px] lg:rounded-lg"
                 >
                     Next Step

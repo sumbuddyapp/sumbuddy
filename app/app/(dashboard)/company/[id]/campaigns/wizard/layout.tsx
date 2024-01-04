@@ -20,13 +20,7 @@ export default function WizardLayout({
             <div className="lg:bg-white w-full flex flex-col lg:flex-row px-4 lg:p-4 rounded-2xl lg:shadow-lg">
                 <CampaignWizardSidebar />
                 <CampaignWizardProvider>
-                    <CampaignFormWrapper
-                    heading="Referral Campaing"
-                    description="Set a name, a bonus amount, and the frequency mode"
-                    >
-                        {children}{/*add children here*/}
-                    <CampaignWizardActions/>
-                    </CampaignFormWrapper>
+                    {children}
                 </CampaignWizardProvider>
                   </div>
             <footer
