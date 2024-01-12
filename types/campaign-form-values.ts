@@ -1,7 +1,8 @@
 export interface CampaignFormValues {
     name: string;
-    // schedulable: boolean;
-    // bonusAmount: number;
+    schedulable: boolean;
+
+    bonusAmount: number;
 
     fileName: string;
 
