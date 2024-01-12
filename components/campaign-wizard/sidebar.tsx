@@ -1,16 +1,21 @@
 'use client';
-
-import { useSelectedLayoutSegment } from 'next/navigation';
+import useCampaignContext from "@/lib/hooks/use-campaign-context";
+import {useSelectedLayoutSegment} from 'next/navigation';
 // Components
 import Image from 'next/image';
 import CampaignWizardStep from './step';
 // Images
 // import bgSidebarDesktop from '@/images/bg-sidebar-desktop.svg';
 import bgSidebarDesktop from '@/images/bg-sidebar-desktop-grayscale.svg';
-// import bgSidebarMobile from '@/images/bg-sidebar-mobile.svg';
+// import bgSidebarMobXDile from '@/images/bg-sidebar-mobile.svg';
 import bgSidebarMobile from '@/images/bg-sidebar-mobile-grayscale.svg';
 
 export default function CampaignWizardSidebar() {
+    const {watch} = useCampaignContext();
+    const values = watch();
+
+    const schedulable = values.schedulable;
+
     const segment = useSelectedLayoutSegment() as
         | 'details'
         | 'buddylist'
@@ -38,25 +43,28 @@ export default function CampaignWizardSidebar() {
             segment: 'links',
             heading: 'Job Listing',
         },
-        {
+    ];
+    if (schedulable) {
+        steps.push({
             number: 4,
             segment: 'schedule',
             heading: 'The Schedule for the Campaign',
-        },
-        {
-            number: 5,
-            segment: 'summary',
-            heading: 'The Campaign Summary',
-        },
-    ];
+        });
+    }
+    steps.push({
+        number: schedulable ? 5 : 4,
+        segment: 'summary',
+        heading: 'The Campaign Summary',
+    });
 
     const Steps = steps.map((step) => (
-        <CampaignWizardStep key={step.number} step={step} segment={segment} />
+        <CampaignWizardStep key={step.number} step={step} segment={segment}/>
     ));
 
     return (
         <div className="relative shrink-0">
-            <div className="lg:absolute lg:inset-0 lg:px-8 py-8 lg:py-10 flex flex-row justify-center lg:justify-stretch lg:flex-col gap-4 lg:gap-6">
+            <div
+                className="lg:absolute lg:inset-0 lg:px-8 py-8 lg:py-10 flex flex-row justify-center lg:justify-stretch lg:flex-col gap-4 lg:gap-6">
                 {Steps}
             </div>
             <Image

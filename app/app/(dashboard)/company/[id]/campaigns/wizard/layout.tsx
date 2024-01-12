@@ -18,8 +18,8 @@ export default function WizardLayout({
     return (
         <main className="font-normal relative w-full max-w-lg lg:max-w-[940px]">
             <div className="lg:bg-white w-full flex flex-col lg:flex-row px-4 lg:p-4 rounded-2xl lg:shadow-lg">
-                <CampaignWizardSidebar />
                 <CampaignWizardProvider>
+                    <CampaignWizardSidebar />
                     {children}
                 </CampaignWizardProvider>
                   </div>
