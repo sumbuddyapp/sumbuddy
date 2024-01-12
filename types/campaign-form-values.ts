@@ -5,6 +5,7 @@ export interface CampaignFormValues {
     bonusAmount: number;
 
     fileName: string;
+    buddyList: FileList
 
     campaignLinks: {
         link_one: string;
