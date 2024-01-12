@@ -5,7 +5,7 @@ import useCampaignContext from "@/lib/hooks/use-campaign-context";
 import CampaignFormWrapper from "@/components/campaign-wizard/wrapper";
 import CampaignWizardActions from "@/components/campaign-wizard/actions";
 
-export default function DetailsPage() {
+export default function SchedulePage() {
     const {register, trigger, formState} = useCampaignContext();
     const {errors} = formState;
 

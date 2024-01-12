@@ -6,7 +6,7 @@ import CampaignWizardActions from "@/components/campaign-wizard/actions";
 import CampaignFormWrapper from "@/components/campaign-wizard/wrapper";
 import React from "react";
 
-export default function DetailsPage() {
+export default function BuddylistPage() {
     const { register, trigger, formState } = useCampaignContext();
     const { errors } = formState;
 
@@ -28,6 +28,7 @@ export default function DetailsPage() {
                 </div>
                 <input
                     type="file"
+                    
                     accept=".csv"
                     className={clsx(
                         "border",
