@@ -10,6 +10,7 @@ export default function CampaignWizardProvider({ children }: FormProviderProps) 
     });
 
     const onSubmit: SubmitHandler<CampaignFormValues> = (data) => {
+        console.log(data)
         route.push('./thank-you');
     };
 

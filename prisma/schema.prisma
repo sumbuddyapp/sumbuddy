@@ -156,6 +156,9 @@ model Campaign {
   updatedAt      DateTime  @updatedAt
   company        Company?  @relation(fields: [companyId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   companyId      String?
+  // let's add a file to this model, called buddyFile
+  buddyListURL  String?
+
   buddyListsId   String?    // Make this field optional
   buddyLists     BuddyList? @relation(fields: [buddyListsId], references: [id]) // Reflect the optional relationship
   @@index([companyId])

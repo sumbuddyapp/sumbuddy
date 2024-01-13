@@ -6,6 +6,9 @@ export default function CampaignWizardActions() {
     const router = useRouter();
     const { trigger, formState } = useCampaignContext();
     const { isValid } = formState;
+    const { watch } = useCampaignContext();
+    const values = watch();
+    const schedulable = values.schedulable;
 
 
     const pathname = usePathname();
@@ -24,12 +27,12 @@ export default function CampaignWizardActions() {
 
     const previous = () => {
         switch (segment) {
-            case 'details': return '';
-            case 'buddylist': return 'details';
-            case 'links': return 'buddylist';
-            case 'schedule': return 'links';
-            case 'summary': return 'schedule';
             case 'thank-you': return 'thank-you';
+            case 'summary': return schedulable ? 'schedule' : 'links';
+            case 'schedule': return 'links';
+            case 'links': return  'buddylist';
+            case 'buddylist': return 'details';
+            case 'details': return '';
             default: return 'details';
         }
     };
@@ -40,7 +43,7 @@ export default function CampaignWizardActions() {
         switch (segment) {
             case 'details': return 'buddylist';
             case 'buddylist': return 'links';
-            case 'links': return 'schedule';
+            case 'links': return schedulable ? 'schedule' : "summary";
             case 'schedule': return 'summary';
             case 'summary': return 'thank-you';
             case 'thank-you': return 'thank-you';

@@ -1,11 +1,8 @@
 export interface CampaignFormValues {
     name: string;
     schedulable: boolean;
-
     bonusAmount: number;
-
-    fileName: string;
-    buddyList: FileList
+    buddyListURL: string
 
     campaignLinks: {
         link_one: string;

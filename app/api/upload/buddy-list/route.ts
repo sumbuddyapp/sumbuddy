@@ -13,16 +13,16 @@ export async function POST(req: Request)  {
       },
     );
   }
-
+  const { searchParams } = new URL(req.url);
+  const filename = searchParams.get('filename');
+  console.log(filename)
   const file = req.body || "";
   const contentType = req.headers.get("content-type") || "text/csv";
-  const filename = `${nanoid()}.${contentType.split("/")[1]}`;
-  const blob = await put(filename, file, {
+  const blobFilename = `${nanoid()}.${contentType.split("/")[1]}`;
+  const blob = await put(blobFilename, file, {
     contentType,
     access: "public",
   });
-
-
 
   return NextResponse.json(blob);
 }
