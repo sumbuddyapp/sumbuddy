@@ -1,45 +1,81 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { toast } from "sonner";
+import {PutBlobResult} from "@vercel/blob";
+import useCampaignContext from "@/lib/hooks/use-campaign-context";
 
 export default function BuddyListUploader() {
   const inputRef = useRef<HTMLInputElement>(null);
-
+  const {getValues, formState, setValue} = useCampaignContext();
+  const buddyListURL = getValues('buddyListURL');
+  const {errors} = formState;
   const [data, setData] = useState({
-    buddy_list: "",
+    buddy_list_url: "",
     fileName: "",
     fileSize: 0,
+    fileStatus: "none selected",
   });
   const [dragActive, setDragActive] = useState(false);
+
+  const onFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    console.log("Buddy List page file: ", file?.name, " size: ", file?.size);
+    if (file) {
+      const response = await fetch(`/api/upload/buddy-list?filename=${file.name}`, {
+        method: 'POST',
+        body: file,
+      });
+      // Store the URL in the form state and in the component state
+      const newBlob = (await response.json()) as PutBlobResult;
+      setValue('buddyListURL', newBlob.url);
+      setData((prev) => ({
+        ...prev,
+        buddy_list_url : newBlob.url,
+        fileName: file.name,
+        fileSize: file.size,
+        fileStatus: "uploaded",
+      }));
+    }
+  };
   const handleUpload = (file: File | null) => {
+    console.log("Handle File uploader file: ", file?.name, " size: ", file?.size);
     if (file) {
       if (file.size / 1024 / 1024 > 50) {
         toast.error("File size too big (max 50MB)");
       } else if (
-        !file.type.includes("csv")
+          !file.type.includes("csv")
       ) {
         toast.error("Invalid file type (must be .csv)");
       } else {
-
-
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          setData((prev) => ({
-            ...prev,
-            buddy_list : e.target?.result as string,
-            fileName: file.name,
-            fileSize: file.size,
-          }));
-        };
-        reader.readAsDataURL(file);
-      }
+        setData((prev) => ({
+          ...prev,
+          buddy_list_url : "",
+          fileName: file.name,
+          fileSize: file.size,
+          fileStatus: "uploading",
+        }));
+      };
     }
-  };
-
+  }
   return (
-    <div>
+      <div>
+        <label className="flex flex-col mt-4">
+          <div className="flex justify-between">
+            {buddyListURL && (
+                <div>
+                  Blob url: <a href={buddyListURL}>{buddyListURL}</a>
+                </div>
+            )}
+            {errors.buddyListURL && (
+                <span className="text-xs lg:text-sm font-medium lg:font-bold tracking-wide text-strawberry-red">
+                    {errors.buddyListURL.message}
+                    </span>
+            )}
+          </div>
+
+        </label>
       <label
         htmlFor={"buddy_list-upload"}
         className={cn(
@@ -77,7 +113,7 @@ export default function BuddyListUploader() {
           className={`${
             dragActive ? "border-2 border-black" : ""
           } absolute z-[3] flex h-full w-full flex-col items-center justify-center rounded-md px-10 transition-all ${
-            data.buddy_list
+            data.buddy_list_url
               ? "bg-white/80 opacity-0 hover:opacity-100 hover:backdrop-blur-md"
               : "bg-white opacity-100 hover:bg-gray-50"
           }`}
@@ -108,10 +144,11 @@ export default function BuddyListUploader() {
           </p>
           <span className="sr-only">List upload</span>
         </div>
-         {data.buddy_list && (
+         {data.buddy_list_url && (
             <div className="border p-4 rounded-md bg-gray-100">
                 <p>File Name: {data.fileName}</p>
                 <p>File Size: {data.fileSize} bytes</p>
+                <p>File url: {data.buddy_list_url}</p>
             </div>
         )}
       </label>
