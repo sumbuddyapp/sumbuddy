@@ -4,23 +4,15 @@ import { cn } from "@/lib/utils";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
 
-export default function BuddyListUploader({
-  defaultValue,
-  name,
-}: {
-  defaultValue: string | null;
-  name: string | "buddy-list";
-}) {
-
+export default function BuddyListUploader() {
   const inputRef = useRef<HTMLInputElement>(null);
+
   const [data, setData] = useState({
-    [name]: defaultValue,
-    "fileName": "",
-    "fileSize": 0
+    buddy_list: "",
+    fileName: "",
+    fileSize: 0,
   });
-
   const [dragActive, setDragActive] = useState(false);
-
   const handleUpload = (file: File | null) => {
     if (file) {
       if (file.size / 1024 / 1024 > 50) {
@@ -30,11 +22,13 @@ export default function BuddyListUploader({
       ) {
         toast.error("Invalid file type (must be .csv)");
       } else {
+
+
         const reader = new FileReader();
         reader.onload = (e) => {
           setData((prev) => ({
             ...prev,
-            [name]: e.target?.result as string,
+            buddy_list : e.target?.result as string,
             fileName: file.name,
             fileSize: file.size,
           }));
@@ -47,7 +41,7 @@ export default function BuddyListUploader({
   return (
     <div>
       <label
-        htmlFor={`buddy-list-upload`}
+        htmlFor={"buddy_list-upload"}
         className={cn(
           "aspect-square max-w-xs group relative mt-2 flex cursor-pointer flex-col items-center justify-center rounded-md border border-gray-300 bg-white shadow-sm transition-all hover:bg-gray-50",
         )}
@@ -83,7 +77,7 @@ export default function BuddyListUploader({
           className={`${
             dragActive ? "border-2 border-black" : ""
           } absolute z-[3] flex h-full w-full flex-col items-center justify-center rounded-md px-10 transition-all ${
-            data[name]
+            data.buddy_list
               ? "bg-white/80 opacity-0 hover:opacity-100 hover:backdrop-blur-md"
               : "bg-white opacity-100 hover:bg-gray-50"
           }`}
@@ -114,7 +108,7 @@ export default function BuddyListUploader({
           </p>
           <span className="sr-only">List upload</span>
         </div>
-         {data[name] && (
+         {data.buddy_list && (
             <div className="border p-4 rounded-md bg-gray-100">
                 <p>File Name: {data.fileName}</p>
                 <p>File Size: {data.fileSize} bytes</p>
@@ -123,9 +117,9 @@ export default function BuddyListUploader({
       </label>
       <div className="mt-1 flex rounded-md shadow-sm">
         <input
-          id={`${name}-upload`}
+          id={"buddy_list-upload"}
           ref={inputRef}
-          name={name}
+          name={"buddy_list"}
           type="file"
           accept=".csv"
           className="sr-only"

@@ -12,14 +12,15 @@ export default function BuddylistPage() {
     const {register, trigger, formState, setValue} = useCampaignContext();
     const {errors} = formState;
     const inputFileRef = useRef<HTMLInputElement>(null);
+    const [fileName, setFileName] = useState("");
+    const [fileSize, setFileSize] = useState(0);
     const [blob, setBlob] = useState<PutBlobResult | null>(null);
 
     const onFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        debugger;
         const file = e.target.files?.[0];
-        // const file = inputFileRef.current.files[0];
         if (file) {
-            // Upload the file
+            setFileName(file.name);
+            setFileSize(file.size);
             const response = await fetch(`/api/upload/buddy-list?filename=${file.name}`, {
                 method: 'POST',
                 body: file,
@@ -50,7 +51,7 @@ export default function BuddylistPage() {
                     </span>
                     )}
                 </div>
-                <BuddyListUploader defaultValue={null} name="buddy-list" />
+                <BuddyListUploader />
 
             </label>
             <CampaignWizardActions/>
