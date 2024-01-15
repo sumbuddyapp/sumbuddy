@@ -259,6 +259,7 @@ export const getCompanyFromPostId = async (postId: string) => {
 };
 
 export const createCampaign = withCompanyAuth(async (formData: FormData, company: Company) => {
+  debugger;
   const session = await getSession();
   // if (!session?.user.id) {
   //   return {
